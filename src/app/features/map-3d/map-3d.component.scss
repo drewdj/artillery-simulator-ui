@@ -1,0 +1,15 @@
+// In 3D mode ALL backgrounds must be transparent to let the CEF/VBS
+// host application render beneath this Angular overlay.
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none; // Allow interaction to pass through to VBS when not over UI
+}
+
+.map-3d-overlay {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
