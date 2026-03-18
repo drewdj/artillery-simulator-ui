@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+button {
+  color: var(--mat-sys-on-surface-variant);
+  transition: color 200ms ease;
+
+  &:hover {
+    color: var(--mat-sys-on-surface);
+  }
+}

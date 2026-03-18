@@ -1,0 +1,71 @@
+<nav class="sidebar" role="navigation" aria-label="Menú principal">
+
+  <!-- ── Hamburger menu ──────────────────────────────────────────────── -->
+  <button
+    mat-icon-button
+    class="sidebar-btn"
+    [matMenuTriggerFor]="appMenu"
+    matTooltip="Menú"
+    matTooltipPosition="right"
+    aria-label="Abrir menú principal"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <mat-menu #appMenu="matMenu" xPosition="after">
+    <button mat-menu-item (click)="confirmClose()">
+      <mat-icon>close</mat-icon>
+      <span>Cerrar aplicación</span>
+    </button>
+  </mat-menu>
+
+  <mat-divider class="sidebar-divider"></mat-divider>
+
+  <!-- ── Drawer toggles ─────────────────────────────────────────────── -->
+  <button
+    mat-icon-button
+    class="sidebar-btn"
+    [class.active]="isActive('entity-tree')"
+    matTooltip="Árbol de entidades"
+    matTooltipPosition="right"
+    aria-label="Árbol de entidades"
+    (click)="toggleDrawer('entity-tree')"
+  >
+    <mat-icon>account_tree</mat-icon>
+  </button>
+
+  <button
+    mat-icon-button
+    class="sidebar-btn"
+    [class.active]="isActive('entity-list')"
+    matTooltip="Lista de entidades"
+    matTooltipPosition="right"
+    aria-label="Lista de entidades"
+    (click)="toggleDrawer('entity-list')"
+  >
+    <mat-icon>list_alt</mat-icon>
+  </button>
+
+  <button
+    mat-icon-button
+    class="sidebar-btn"
+    [class.active]="isActive('layers')"
+    matTooltip="Capas GIS"
+    matTooltipPosition="right"
+    aria-label="Panel de capas"
+    (click)="toggleDrawer('layers')"
+  >
+    <mat-icon>layers</mat-icon>
+  </button>
+
+  <!-- ── Spacer ─────────────────────────────────────────────────────── -->
+  <div class="flex-spacer" role="presentation"></div>
+
+  <!-- ── Bottom controls ───────────────────────────────────────────── -->
+  <div class="bottom-controls" role="group" aria-label="Controles de simulación">
+    <app-mode-2d-3d-toggle></app-mode-2d-3d-toggle>
+    <app-play-pause-button></app-play-pause-button>
+    <app-theme-toggle></app-theme-toggle>
+  </div>
+
+</nav>
