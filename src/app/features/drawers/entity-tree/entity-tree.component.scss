@@ -55,6 +55,10 @@ $drawer-padding: 16px;
   height: 28px;
   min-width: 28px;
   flex-shrink: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
 
   &.invisible {
     visibility: hidden;
@@ -63,7 +67,11 @@ $drawer-padding: 16px;
 
 .expand-icon {
   font-size: 18px;
+  width: 18px !important;
+  height: 18px !important;
+  line-height: 18px !important;
   transition: transform 200ms ease;
+  transform-origin: center;
   color: var(--mat-sys-on-surface-variant);
 
   &.expanded {
