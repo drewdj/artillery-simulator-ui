@@ -1,0 +1,58 @@
+// Global styles — Artillery Simulator UI
+// Component-specific styles live in their own .scss files.
+
+// ─── SCSS Custom Variables ─────────────────────────────────────────────────────
+$sidebar-width: 56px;
+$drawer-width: 300px;
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$transition-speed: 200ms;
+
+// ─── Reset / Base ──────────────────────────────────────────────────────────────
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+// ─── OpenLayers overrides ──────────────────────────────────────────────────────
+// Ensure OL controls don't conflict with Material styles
+.ol-control {
+  button {
+    font-family: inherit;
+  }
+}
+
+// ─── 3D Mode Transparency ─────────────────────────────────────────────────────
+// When in 3D mode the main canvas area becomes transparent so the CEF/VBS
+// host application renders beneath the Angular UI overlays.
+.map-canvas-area.mode-3d {
+  background: transparent !important;
+
+  app-map-2d {
+    display: none !important;
+  }
+}
+
+// ─── Utility Classes ──────────────────────────────────────────────────────────
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
