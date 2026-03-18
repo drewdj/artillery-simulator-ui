@@ -1,0 +1,59 @@
+// Root layout — Artillery Simulator UI
+$sidebar-width: 56px;
+$drawer-width: 300px;
+
+:host {
+  display: flex;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.app-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.content-area {
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+
+  // Override Material drawer background
+  &.mat-drawer-container {
+    background: transparent;
+  }
+}
+
+.feature-drawer {
+  width: $drawer-width;
+  background-color: var(--mat-sys-surface-container);
+  border-right: 1px solid var(--mat-sys-outline-variant);
+  overflow: hidden;
+}
+
+.map-canvas-area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--mat-sys-surface);
+  overflow: hidden;
+
+  // 3D mode: transparent so VBS/CEF host shows through
+  &.mode-3d {
+    background: transparent !important;
+
+    app-map-2d {
+      display: none !important;
+    }
+  }
+
+  app-map-2d,
+  app-map-3d {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
