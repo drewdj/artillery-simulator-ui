@@ -1,0 +1,54 @@
+<div class="drawer-panel" role="region" aria-label="Árbol de entidades">
+  <div class="drawer-header">
+    <mat-icon class="header-icon">account_tree</mat-icon>
+    <h2 class="drawer-title">Árbol de Entidades</h2>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="tree-container" role="tree">
+    @for (node of treeData(); track node.id) {
+      <div class="tree-root">
+        <ng-container
+          [ngTemplateOutlet]="nodeTemplate"
+          [ngTemplateOutletContext]="{ node: node, depth: 0 }"
+        ></ng-container>
+      </div>
+    }
+  </div>
+</div>
+
+<ng-template #nodeTemplate let-node="node" let-depth="depth">
+  <div
+    class="tree-node"
+    [style.padding-left.px]="depth * 16 + 8"
+    [attr.aria-expanded]="node.children ? isExpanded(node.id) : null"
+    role="treeitem"
+  >
+    <button
+      mat-icon-button
+      class="expand-btn"
+      [class.invisible]="!node.children?.length"
+      (click)="node.children?.length && toggleNode(node.id)"
+      [attr.aria-label]="isExpanded(node.id) ? 'Contraer ' + node.name : 'Expandir ' + node.name"
+    >
+      <mat-icon class="expand-icon" [class.expanded]="isExpanded(node.id)">
+        {{ node.children?.length ? 'chevron_right' : '' }}
+      </mat-icon>
+    </button>
+
+    <mat-icon class="node-icon">{{ node.icon }}</mat-icon>
+    <span class="node-name">{{ node.name }}</span>
+  </div>
+
+  @if (node.children && isExpanded(node.id)) {
+    <div role="group">
+      @for (child of node.children; track child.id) {
+        <ng-container
+          [ngTemplateOutlet]="nodeTemplate"
+          [ngTemplateOutletContext]="{ node: child, depth: depth + 1 }"
+        ></ng-container>
+      }
+    </div>
+  }
+</ng-template>
